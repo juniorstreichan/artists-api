@@ -6,7 +6,7 @@
 		<groupId>dev.juniorstreichan.artists</groupId>
 		<artifactId>artists</artifactId>
 		<version>1.0-SNAPSHOT</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath>../</relativePath>
 	</parent>
 	<artifactId>api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
