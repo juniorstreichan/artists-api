@@ -44,12 +44,22 @@ public class ArtistRepositoryTests extends RepositoryTest {
     }
 
     @Test
+    void deve_fazer_busca_pelo_nome() {
+
+        var artists = artistRepository.findByNameContainingIgnoreCase(
+            myArtist.getName().substring(0, 3), Sort.by(Sort.Direction.ASC, "name")
+        );
+//        System.out.println(artists);
+        Assertions.assertThat(artists.size()).isGreaterThan(0);
+    }
+
+    @Test
     void deve_fazer_busca_com_ordenacao() {
         artistRepository.save(Generator.generateArtist());
         artistRepository.save(Generator.generateArtist());
         artistRepository.save(Generator.generateArtist());
 
-        var artists = artistRepository.findOrderByNameLength(Sort.by("fn_len"));
+        var artists = artistRepository.findByNameOrderByNameLength("", Sort.by("fn_len"));
         Assertions.assertThat(artists.get(0).getName().length()).isLessThanOrEqualTo(artists.get(1).getName().length());
     }
 }
