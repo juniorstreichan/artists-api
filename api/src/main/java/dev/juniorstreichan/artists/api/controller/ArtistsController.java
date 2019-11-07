@@ -19,7 +19,7 @@ public class ArtistsController {
     @Autowired
     private IArtistService artistService;
 
-    @GetMapping
+    @GetMapping("page")
     public HttpEntity<Page<Artist>> getPage(Pageable pageable) {
         return ResponseEntity.ok(artistService.page(pageable));
     }
