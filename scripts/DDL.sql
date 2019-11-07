@@ -15,3 +15,22 @@
        add constraint fk_album_artist
        foreign key (artist_id)
        references artist;
+
+       INSERT INTO artist(id,name) VALUES (1,'Serj tankian');
+       INSERT INTO artist(id,name) VALUES (2,'Mike Shinoda');
+       INSERT INTO artist(id,name) VALUES (3,'Michel Teló');
+       INSERT INTO artist(id,name) VALUES (4,'Guns N'' Roses');
+
+       INSERT INTO album(id,description,artist_id) VALUES (1,'Harakiri',1);
+       INSERT INTO album(id,description,artist_id) VALUES (2,'Black Blooms',1);
+       INSERT INTO album(id,description,artist_id) VALUES (3,'The Rough Dog',1);
+       INSERT INTO album(id,description,artist_id) VALUES (4,'The Rising Tied',2);
+       INSERT INTO album(id,description,artist_id) VALUES (5,'Post Traumatic',2);
+       INSERT INTO album(id,description,artist_id) VALUES (6,'Post Traumatic EP',2);
+       INSERT INTO album(id,description,artist_id) VALUES (7,'Where''d You Go',2);
+       INSERT INTO album(id,description,artist_id) VALUES (8,'Bem Sertanejo',3);
+       INSERT INTO album(id,description,artist_id) VALUES (9,'Bem Sertanejo - O Show (Ao Vivo)',3);
+       INSERT INTO album(id,description,artist_id) VALUES (10,'Bem Sertanejo - (1ª Temporada) - EP',3);
+       INSERT INTO album(id,description,artist_id) VALUES (11,'Use Your IIIIusion I',4);
+       INSERT INTO album(id,description,artist_id) VALUES (12,'Use Your IIIIusion II',4);
+       INSERT INTO album(id,description,artist_id) VALUES (13,'Greatest Hits',4);
