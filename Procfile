@@ -1,1 +1,1 @@
-web: java -Dspring.profiles.active=prod -jar api/target/api.jar
+web: java -jar -Dspring.profiles.active=prod  api/target/api.jar
