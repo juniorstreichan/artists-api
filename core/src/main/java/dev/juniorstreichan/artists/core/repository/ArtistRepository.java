@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository
 public interface ArtistRepository extends JpaRepository<Artist, Long> {
-    @Query("select a, LENGTH(a.name) as fn_len from Artist a where a.name like %:name%")
+    @Query("select a, LENGTH(a.name) as fn_len from Artist a where lower(a.name) like lower(concat('%',:name,'%')) ")
     List<Artist> findByNameOrderByNameLength(
         @Param("name") String name,
         Sort sort

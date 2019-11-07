@@ -33,7 +33,7 @@ class ArtistService extends BaseService<Artist, ArtistRepository> implements IAr
         log.info("Busca por nome: " + name);
         return repository.findByNameOrderByNameLength(
             name,
-            Sort.by(direction, "name")
+            Sort.by(direction, "fn_len")
         );
     }
 }
