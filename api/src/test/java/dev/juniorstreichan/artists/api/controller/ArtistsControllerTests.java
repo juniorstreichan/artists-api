@@ -1,13 +1,16 @@
 package dev.juniorstreichan.artists.api.controller;
 
 import dev.juniorstreichan.artists.api.ApiApplicationTests;
+import dev.juniorstreichan.artists.api.service.IArtistService;
 import dev.juniorstreichan.artists.core.model.Album;
 import dev.juniorstreichan.artists.core.model.Artist;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import org.hamcrest.Matchers;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 
 import java.util.ArrayList;
@@ -18,7 +21,10 @@ public class ArtistsControllerTests extends ApiApplicationTests {
 
     private List<Artist> artists = new ArrayList<>();
 
-    @BeforeEach
+    @Autowired
+    private IArtistService artistService;
+
+    @BeforeAll
     public void deve_inserir_artistas() {
         var a1 = new Artist(
             null,
@@ -150,7 +156,7 @@ public class ArtistsControllerTests extends ApiApplicationTests {
             .and().statusCode(HttpStatus.OK.value())
             .body(
                 "content", Matchers.notNullValue(),
-                "numberOfElements", Matchers.equalTo(artists.size())
+                "numberOfElements", Matchers.greaterThanOrEqualTo(artists.size())
             );
     }
 
@@ -174,7 +180,7 @@ public class ArtistsControllerTests extends ApiApplicationTests {
 
     @Test
     void deve_alterar_artista() {
-        var artist = artists.get(1);
+        var artist = artistService.listByName("", Sort.Direction.ASC).get(1);
         var newName = "Michael jackson";
         artist.setName(newName);
 
