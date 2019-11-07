@@ -2,6 +2,7 @@ package dev.juniorstreichan.artists.api.controller;
 
 import dev.juniorstreichan.artists.api.service.IArtistService;
 import dev.juniorstreichan.artists.core.model.Artist;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,11 +20,21 @@ public class ArtistsController {
     @Autowired
     private IArtistService artistService;
 
+    @ApiOperation(
+        value = "Busca paginada",
+        response = Page.class,
+        notes = "Retorna uma página de artistas"
+    )
     @GetMapping("page")
     public HttpEntity<Page<Artist>> getPage(Pageable pageable) {
         return ResponseEntity.ok(artistService.page(pageable));
     }
 
+    @ApiOperation(
+        value = "Listagem por nome",
+        response = List.class,
+        notes = "Retorna uma lista de artistas"
+    )
     @GetMapping("list")
     public HttpEntity<List<Artist>> getListByName(
         @RequestParam(name = "name", defaultValue = "") String name,
@@ -46,6 +57,11 @@ public class ArtistsController {
         return ResponseEntity.ok(list);
     }
 
+    @ApiOperation(
+        value = "Busca por id",
+        response = Artist.class,
+        notes = "Retorna um artista"
+    )
     @GetMapping("{id}")
     public HttpEntity<Artist> getById(
         @PathVariable Long id
@@ -57,6 +73,11 @@ public class ArtistsController {
         return ResponseEntity.ok(artist);
     }
 
+    @ApiOperation(
+        value = "Adicionar",
+        response = Artist.class,
+        notes = "Retorna um artista"
+    )
     @PostMapping
     public HttpEntity<Artist> post(
         @RequestBody Artist artist
@@ -71,6 +92,11 @@ public class ArtistsController {
         }
     }
 
+    @ApiOperation(
+        value = "Alterar",
+        response = Artist.class,
+        notes = "Retorna um artista"
+    )
     @PutMapping
     public HttpEntity<Artist> put(
         @RequestBody Artist artist
@@ -85,8 +111,13 @@ public class ArtistsController {
         }
     }
 
+    @ApiOperation(
+        value = "Deletar",
+        response = Artist.class,
+        notes = "Exclui um artista"
+    )
     @DeleteMapping("{id}")
-    public HttpEntity<Artist> deleteById(
+    public HttpEntity deleteById(
         @PathVariable Long id
     ) {
         artistService.delete(id);
