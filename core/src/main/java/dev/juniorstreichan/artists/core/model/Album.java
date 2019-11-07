@@ -1,10 +1,7 @@
 package dev.juniorstreichan.artists.core.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -26,5 +23,6 @@ public class Album implements BusinessEntity {
   @ManyToOne
   @JoinColumn(name = "artist_id")
   @JsonIgnore
+  @ToString.Exclude
   private Artist artist;
 }

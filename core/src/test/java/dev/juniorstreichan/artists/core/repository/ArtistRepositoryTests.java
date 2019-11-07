@@ -49,7 +49,7 @@ public class ArtistRepositoryTests extends RepositoryTest {
         var artists = artistRepository.findByNameContainingIgnoreCase(
             myArtist.getName().substring(0, 3), Sort.by(Sort.Direction.ASC, "name")
         );
-//        System.out.println(artists);
+        System.out.println(artists);
         Assertions.assertThat(artists.size()).isGreaterThan(0);
     }
 
