@@ -17,14 +17,18 @@ import java.util.List;
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Artist implements BusinessEntity {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-  @NotNull(message = "name is required")
-  @Column(nullable = false)
-  private String name;
+    @NotNull(message = "name is required")
+    @Column(nullable = false)
+    private String name;
 
-  @OneToMany(mappedBy = "artist", cascade = CascadeType.ALL)
-  private List<Album> albums = new ArrayList<>();
+    @OneToMany(
+        mappedBy = "artist",
+        cascade = CascadeType.ALL,
+        fetch = FetchType.EAGER
+    )
+    private List<Album> albums = new ArrayList<>();
 }
